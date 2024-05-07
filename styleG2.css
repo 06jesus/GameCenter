@@ -1,0 +1,60 @@
+.titleG2 {
+  font-family: fantasy;
+  font-size: 50px;
+  color: var(--color1);
+  font-weight: 300;
+}
+.divG2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.buttonElegidoG2 {
+  background-color: aliceblue;
+  width: 200px;
+  height: 200px;
+  font-size: 100px;
+  background-color: var(--color2);
+  cursor: pointer;
+}
+.buttonEnemigoG2 {
+  width: 200px;
+  height: 200px;
+  font-size: 100px;
+  background-color: var(--color2);
+  cursor: pointer;
+  visibility: hidden;
+}
+.pVS {
+  color: var(--color1);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+.buttonGo {
+  font-size: 45px;
+  background-color: var(--color3);
+  cursor: pointer;
+  color: var(--color1);
+}
+.buttonPapel,
+.buttonPiedra,
+.buttonTijeras {
+  font-size: 45px;
+  background-color: var(--color3);
+  cursor: pointer;
+}
+.puntosDisplay {
+  color: var(--color1);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+@media screen and (max-width: 391px) {
+  .divG2 {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .titleG2 {
+    font-size: 40px;
+  }
+}

@@ -1,0 +1,27 @@
+.titleG3 {
+  font-family: fantasy;
+  font-size: 50px;
+  color: var(--color1);
+  font-weight: 300;
+}
+.row {
+  display: flex;
+}
+.row > button {
+  width: 200px;
+  height: 200px;
+  background-color: var(--color1);
+  cursor: pointer;
+  font-size: 100px;
+  color: transparent;
+}
+@media screen and (max-width: 391px) {
+  .titleG3 {
+    font-size: 40px;
+  }
+  .row > button {
+    font-size: 50px;
+    width: 80px;
+    height: 80px;
+  }
+}
