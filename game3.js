@@ -38,56 +38,60 @@ buttonEnter.addEventListener('click', () => {
 
   let viñetasAbiertas = []
   let viñetasVisibles = document.querySelectorAll('.viñeta')
+  let bloquearClicks = false
 
   viñetasVisibles.forEach((viñeta) => {
     viñeta.addEventListener('click', () => {
-      if (viñeta.style.color !== 'black' && viñetasAbiertas.length < 2) {
-        viñeta.style.color = 'black'
-        viñetasAbiertas.push(viñeta)
+      if (bloquearClicks || viñeta.style.color === 'black') return
 
-        if (viñetasAbiertas.length === 2) {
-          const [viñeta1, viñeta2] = viñetasAbiertas
+      viñeta.style.color = 'black'
+      viñetasAbiertas.push(viñeta)
 
-          if (viñeta1.textContent !== viñeta2.textContent) {
-            setTimeout(() => {
-              viñeta1.style.color = 'transparent'
-              viñeta2.style.color = 'transparent'
-            }, 1000)
+      if (viñetasAbiertas.length === 2) {
+        const [viñeta1, viñeta2] = viñetasAbiertas
+
+        if (viñeta1.textContent !== viñeta2.textContent) {
+          bloquearClicks = true
+          setTimeout(() => {
+            viñeta1.style.color = 'transparent'
+            viñeta2.style.color = 'transparent'
+            bloquearClicks = false
+          }, 1000)
+        }
+
+        viñetasAbiertas = []
+
+        let todasDescubiertas = true
+        viñetasVisibles.forEach((viñeta) => {
+          if (viñeta.style.color !== 'black') {
+            todasDescubiertas = false
           }
+        })
 
-          viñetasAbiertas = []
-
-          let todasDescubiertas = true
-          viñetasVisibles.forEach((viñeta) => {
-            if (viñeta.style.color !== 'black') {
-              todasDescubiertas = false
-            }
-          })
-
-          if (todasDescubiertas) {
-            setTimeout(() => {
-              alert('¡GANASTE!')
-              resetearJuego()
-            }, 1000)
-          }
-          function resetearJuego() {
-            viñetasVisibles.forEach((viñeta) => {
-              viñeta.style.color = 'transparent'
-            })
-
-            for (let i = pares.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1))
-              ;[pares[i], pares[j]] = [pares[j], pares[i]]
-            }
-
-            let viñetaIndex = 0
-            viñetasVisibles.forEach((viñeta) => {
-              viñeta.textContent = pares[viñetaIndex]
-              viñetaIndex++
-            })
-          }
+        if (todasDescubiertas) {
+          setTimeout(() => {
+            alert('¡GANASTE!')
+            resetearJuego()
+          }, 1000)
         }
       }
     })
   })
+
+  function resetearJuego() {
+    viñetasVisibles.forEach((viñeta) => {
+      viñeta.style.color = 'transparent'
+    })
+
+    for (let i = pares.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[pares[i], pares[j]] = [pares[j], pares[i]]
+    }
+
+    let viñetaIndex = 0
+    viñetasVisibles.forEach((viñeta) => {
+      viñeta.textContent = pares[viñetaIndex]
+      viñetaIndex++
+    })
+  }
 })

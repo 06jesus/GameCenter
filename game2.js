@@ -26,13 +26,18 @@ buttonEnter.addEventListener('click', () => {
 
   const buttonEnemigo = document.createElement('button')
   buttonEnemigo.className = 'buttonEnemigoG2'
-  buttonEnemigo.textContent = generarValorAleatorio() // Asignar valor aleatorio inicial
+  buttonEnemigo.textContent = generarValorAleatorio()
   divGame.appendChild(buttonEnemigo)
 
   const buttonGo = document.createElement('button')
   buttonGo.className = 'buttonGo'
   buttonGo.textContent = 'Luchar!'
   articleBase.appendChild(buttonGo)
+
+  const alerta = document.createElement('p')
+  alerta.className = 'resultadoText'
+  alerta.textContent = ''
+  articleBase.appendChild(alerta)
 
   const divSelector = document.createElement('div')
   divSelector.className = 'div2G2'
@@ -53,7 +58,6 @@ buttonEnter.addEventListener('click', () => {
   buttonTijeras.textContent = '✂️'
   divSelector.appendChild(buttonTijeras)
 
-  // Contador de puntos
   const puntosDisplay = document.createElement('p')
   puntosDisplay.className = 'puntosDisplay'
   puntosDisplay.textContent = `Puntos: ${puntos}`
@@ -81,7 +85,20 @@ buttonEnter.addEventListener('click', () => {
     const opciones = ['✂️', '🧻', '🪨']
     return opciones[Math.floor(Math.random() * opciones.length)]
   }
+  buttonPapel.addEventListener('click', () => {
+    buttonGo.style.visibility = 'visible'
+    alerta.textContent = ''
+  })
 
+  buttonPiedra.addEventListener('click', () => {
+    buttonGo.style.visibility = 'visible'
+    alerta.textContent = ''
+  })
+
+  buttonTijeras.addEventListener('click', () => {
+    buttonGo.style.visibility = 'visible'
+    alerta.textContent = ''
+  })
   buttonGo.addEventListener('click', () => {
     const Elegido = buttonElegido.textContent
     const Enemigo = buttonEnemigo.textContent
@@ -97,19 +114,16 @@ buttonEnter.addEventListener('click', () => {
       (Elegido === '🪨' && Enemigo === '🧻') ||
       (Elegido === '🧻' && Enemigo === '✂️')
     ) {
-      puntos = Math.max(puntos - 10, 0) // No permitir que los puntos sean negativos
+      puntos = Math.max(puntos - 10, 0)
     } else {
-      alert('JUEGO NULO ⚔️')
+      alerta.textContent = 'JUEGO NULO ⚔️'
     }
-
-    // Actualizar puntos
     puntosDisplay.textContent = `Puntos: ${puntos}`
-
-    // Reiniciar el contador si los puntos alcanzan 100
     if (puntos >= 100) {
       alert('¡Has alcanzado 100 puntos! Reiniciando el contador.')
       puntos = 0
       puntosDisplay.textContent = `Puntos: ${puntos}`
     }
+    buttonGo.style.visibility = 'hidden'
   })
 })

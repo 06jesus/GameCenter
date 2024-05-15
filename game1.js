@@ -50,12 +50,18 @@ buttonEnter.addEventListener('click', () => {
 
   let lastButtonClicked = null
   let hasMadeMove = false
-  let playerSelection = '' // Variable para almacenar la selección del jugador
+  let playerSelection = ''
+  let hasSelectedButton = false
 
   const cajones = document.querySelectorAll('.cajonG1')
   cajones.forEach((cajon) => {
     cajon.addEventListener('click', () => {
-      if (!hasMadeMove) {
+      if (
+        !hasMadeMove &&
+        hasSelectedButton &&
+        !checkForWinner(playerSelection) &&
+        cajon.textContent === '⬛'
+      ) {
         cajon.textContent =
           playerSelection === '' ? lastButtonClicked : playerSelection
         hasMadeMove = true
@@ -104,13 +110,15 @@ buttonEnter.addEventListener('click', () => {
   buttonXG1.addEventListener('click', () => {
     if (!hasMadeMove) {
       lastButtonClicked = 'buttonXG1'
-      playerSelection = '❎' // El jugador elige "❎"
+      playerSelection = '❎'
+      hasSelectedButton = true
     }
   })
   button0G1.addEventListener('click', () => {
     if (!hasMadeMove) {
       lastButtonClicked = 'button0G1'
-      playerSelection = '🅾️' // El jugador elige "🅾️"
+      playerSelection = '🅾️'
+      hasSelectedButton = true
     }
   })
 
@@ -119,8 +127,6 @@ buttonEnter.addEventListener('click', () => {
 
   function checkForWinner(playerSelection) {
     const cajones = document.querySelectorAll('.cajonG1')
-
-    // Verificar líneas verticales
     for (let i = 0; i < 3; i++) {
       if (
         cajones[i].textContent === playerSelection &&
@@ -131,7 +137,6 @@ buttonEnter.addEventListener('click', () => {
       }
     }
 
-    // Verificar líneas horizontales
     for (let i = 0; i < 9; i += 3) {
       if (
         cajones[i].textContent === playerSelection &&
@@ -142,7 +147,6 @@ buttonEnter.addEventListener('click', () => {
       }
     }
 
-    // Verificar líneas diagonales
     if (
       cajones[0].textContent === playerSelection &&
       cajones[0].textContent === cajones[4].textContent &&
@@ -164,8 +168,6 @@ buttonEnter.addEventListener('click', () => {
 
   function checkForLoser() {
     const cajones = document.querySelectorAll('.cajonG1')
-
-    // Verificar líneas verticales
     for (let i = 0; i < 3; i++) {
       if (
         cajones[i].textContent !== '⬛' &&
@@ -176,7 +178,6 @@ buttonEnter.addEventListener('click', () => {
       }
     }
 
-    // Verificar líneas horizontales
     for (let i = 0; i < 9; i += 3) {
       if (
         cajones[i].textContent !== '⬛' &&
@@ -187,7 +188,6 @@ buttonEnter.addEventListener('click', () => {
       }
     }
 
-    // Verificar líneas diagonales
     if (
       cajones[0].textContent !== '⬛' &&
       cajones[0].textContent === cajones[4].textContent &&
@@ -213,9 +213,11 @@ buttonEnter.addEventListener('click', () => {
       cajon.textContent = '⬛'
     })
     hasMadeMove = false
-    playerSelection = '' // Reiniciar la selección del jugador
+    playerSelection = ''
+    hasSelectedButton = false
   }
 })
+
 const buttonGameCenter = document.querySelector('.GameCenter')
 
 buttonGameCenter.addEventListener('click', () => {

@@ -15,6 +15,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 95px;
 }
 h1 {
   color: var(--color1);
@@ -22,6 +23,7 @@ h1 {
   font-weight: 300;
   font-size: 75px;
   cursor: pointer;
+  margin-top: 0%;
 }
 .selectorGame {
   display: flex;
@@ -47,7 +49,6 @@ h1 {
   align-items: center;
   background-color: transparent;
   flex-wrap: wrap;
-  width: 1000px;
 }
 .titleG1 {
   font-family: fantasy;
@@ -111,24 +112,13 @@ h1 {
   padding: 15px;
   cursor: pointer;
 }
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-}
-footer > p {
-  color: var(--color1);
-  font-family: Arial, Helvetica, sans-serif;
-  position: absolute;
-  bottom: 0;
-}
-@media screen and (max-width: 391px) {
+@media screen and (max-width: 532px) {
   .GameCenter {
     font-size: 50px;
   }
   body {
-    background-image: none;
-    background-color: rgb(92, 26, 153);
+    /* background-image: none; */
+    /* background-color: rgb(92, 26, 153); */
   }
   .selectorGame > button {
     width: 370px;

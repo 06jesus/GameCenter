@@ -15,9 +15,12 @@
   font-size: 100px;
   color: transparent;
 }
-@media screen and (max-width: 391px) {
+@media screen and (max-width: 864px) {
   .titleG3 {
     font-size: 40px;
+  }
+  main {
+    height: 900px;
   }
   .row > button {
     font-size: 50px;

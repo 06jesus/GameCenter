@@ -36,6 +36,7 @@
   background-color: var(--color3);
   cursor: pointer;
   color: var(--color1);
+  visibility: hidden;
 }
 .buttonPapel,
 .buttonPiedra,
@@ -49,7 +50,12 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
 }
-@media screen and (max-width: 391px) {
+.resultadoText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: var(--color1);
+}
+@media screen and (max-width: 532px) {
   .divG2 {
     flex-direction: column;
     justify-content: center;
